@@ -2,6 +2,7 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import sampleRoutes from './routes/sampleRoutes';
+import stockRoutes from './routes/sampleRoutes';
 
 const app: Application = express();
 const PORT = 3000;
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/sample', sampleRoutes);
+app.use('/stocks', stockRoutes);
 
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
