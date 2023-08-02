@@ -16,7 +16,7 @@ export function calculateBenfordsLawComparison(data: Data): BenfordsLawResult {
   const leadingDigitCounts: number[] = new Array(10).fill(0);
   const totalCount: number | undefined = data?.prices?.length;
 
-  data?.prices.forEach((entry: Entry) => {
+  data?.prices?.forEach((entry: Entry) => {
     const volume: number = entry.volume;
 
     if(volume){
@@ -38,8 +38,11 @@ export function calculateBenfordsLawComparison(data: Data): BenfordsLawResult {
 
   for (let digit = 1; digit <= 9; digit++) {
     const benfordPercentage: number = BENFORD_PERCENTAGES[digit];
-    const occurrenceCount: number = leadingDigitCounts[digit];
-    const comparison: string = Math.abs((occurrenceCount / totalCount!) * 100 - benfordPercentage).toFixed(2) + '%';
+    const occurrenceCount: number = leadingDigitCounts[digit] || 0;
+
+    // Handle the case when totalCount is zero
+    const OccurancePercentage = totalCount === 0 ? 0 : (occurrenceCount / totalCount) * 100;
+    const comparison: string = Math.abs(OccurancePercentage - benfordPercentage).toFixed(2) + '%';
     comparisonTable.push({ digit, occurrenceCount, benfordPercentage: benfordPercentage + '%', comparison });
 
     // Accumulate the comparison value to calculate the sum
