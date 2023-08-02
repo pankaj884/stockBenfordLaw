@@ -13,6 +13,7 @@ const router = express.Router();
  *        name: stockName
  *        schema:
  *          type: string
+ *          default: "AMRN"
  *        required: true
  *        description: The stock name
  *    responses:
