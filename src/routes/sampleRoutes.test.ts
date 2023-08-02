@@ -1,11 +1,11 @@
 import request from 'supertest';
-import {app, closeServer} from '../src/app';
+import {app, closeServer} from '../app';
 
 afterAll(async () => {
   closeServer();
 });
 
-describe('Sample Controller', () => {
+describe('Sample Route', () => {
   it('should return sample data', async () => {
     const response = await request(app).get('/sample');
     expect(response.status).toBe(200);

@@ -1,4 +1,3 @@
-// httpStatusCodes.ts
 enum HttpStatusCodes {
     OK = 200,
     CREATED = 201,

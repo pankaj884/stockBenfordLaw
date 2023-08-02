@@ -1,4 +1,3 @@
-// data.ts
 import axios from 'axios';
 import { Data } from '../constants/StockData';
 
@@ -16,5 +15,6 @@ export async function fetchHistoricalData(symbol: string): Promise<Data> {
       'x-rapidapi-key': rapidApiKey,
     },
   });
+
   return response.data;
 }

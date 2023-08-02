@@ -1,4 +1,3 @@
-// calculate.ts
 import { Data, Entry } from '../constants/StockData';
 import { BENFORD_PERCENTAGES } from '../constants/BenfordPercentage';
 
@@ -13,14 +12,18 @@ interface BenfordsLawResult {
 }
 
 export function calculateBenfordsLawComparison(data: Data): BenfordsLawResult {
+
   const leadingDigitCounts: number[] = new Array(10).fill(0);
   const totalCount: number | undefined = data?.prices?.length;
 
   data?.prices.forEach((entry: Entry) => {
     const volume: number = entry.volume;
-    const leadingDigit: number = calculateLeadingDigit(volume);
-    if (leadingDigit >= 1 && leadingDigit <= 9) {
-      leadingDigitCounts[leadingDigit]++;
+
+    if(volume){
+      const leadingDigit: number = calculateLeadingDigit(volume);
+      if (leadingDigit >= 1 && leadingDigit <= 9) {
+        leadingDigitCounts[leadingDigit]++;
+      }
     }
   });
 
