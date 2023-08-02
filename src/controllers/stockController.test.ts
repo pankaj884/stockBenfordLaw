@@ -1,5 +1,4 @@
 // stockController.test.ts
-import request from 'supertest';
 import { Request, Response, NextFunction } from 'express';
 import { createRequest, createResponse } from "node-mocks-http";
 import HttpStatusCodes from '../constants/HttpStatusCodes';

@@ -2,7 +2,6 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import 'dotenv/config'
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import sampleRoutes from './routes/sampleRoutes';
 import stockRoutes from './routes/stockRoutes';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
@@ -16,7 +15,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-app.use('/sample', sampleRoutes);
 app.use('/stocks', stockRoutes);
 
 // Error handling middleware
