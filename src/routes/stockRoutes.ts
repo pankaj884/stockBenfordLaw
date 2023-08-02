@@ -1,11 +1,11 @@
 import express from 'express';
-import { getHistoricalData } from '../controllers/stockController';
+import { getBLDataForStock } from '../controllers/stockController';
 
 const router = express.Router();
 
 /**
  * @swagger
- * /stock/{stockName}:
+ * /stocks/{stockName}:
  *  get:
  *    summary: Get stock data for a given stock name
  *    parameters:
@@ -19,6 +19,6 @@ const router = express.Router();
  *      200:
  *        description: Successful response
  */
-router.get('/:stockName', getHistoricalData);
+router.get('/:stockName', getBLDataForStock);
 
 export default router;

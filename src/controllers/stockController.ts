@@ -1,11 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
+import { fetchHistoricalData } from '../services/yahooFinanceService';
+import { calculateBenfordsLawComparison } from '../util/calculate';
 
-export const getHistoricalData = (req: Request, res: Response, next: NextFunction) => {
+export const getBLDataForStock = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const sampleData = {
-      message: 'Hello, this is a sample API response!',
-    };
-    res.json(sampleData);
+    const stockName = req.params.stockName;
+
+    const historicalData = await fetchHistoricalData(stockName);
+
+    if (historicalData?.prices?.length) {
+      const benfordsLawComparison = calculateBenfordsLawComparison(historicalData);
+
+      res.json(benfordsLawComparison);
+    }
+
   } catch (error) {
     next(error);
   }
